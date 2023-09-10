@@ -2,4 +2,5 @@ DEBUG=
 PORT=
 USER=
 PASSWORD=
-DB='./sqlite/mydatabase.db'
+DB=
+SECRET_KEY=

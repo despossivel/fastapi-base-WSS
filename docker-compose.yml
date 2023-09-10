@@ -4,5 +4,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      - DEBUG=true
+      - PORT=5003
+      - USER=user
+      - PASSWORD=password
+      - DB=./.sqlite/mydatabase.db
+      - SECRET_KEY=3327345934877hgdifujbfjkgndfjghir7348753487
     ports:
       - "5003:5003"
