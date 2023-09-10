@@ -45,18 +45,18 @@ def create_task(title):
 
 
 
-# def query_orders(customer_name, start_date, end_date):
-#     conn = sqlite3.connect('mydatabase.db')
-#     cursor = conn.cursor()
+def query_orders(customer_name, start_date, end_date):
+    conn = sqlite3.connect('mydatabase.db')
+    cursor = conn.cursor()
 
-#     cursor.execute('''
-#     SELECT SUM(order_value) AS total_order_value
-#     FROM orders
-#     WHERE customer_name = ? AND order_date BETWEEN ? AND ?
-#     ''', (customer_name, start_date, end_date))
+    cursor.execute('''
+    SELECT SUM(order_value) AS total_order_value
+    FROM orders
+    WHERE customer_name = ? AND order_date BETWEEN ? AND ?
+    ''', (customer_name, start_date, end_date))
 
-#     result = cursor.fetchone()
-#     total_order_value = result[0] if result else 0
+    result = cursor.fetchone()
+    total_order_value = result[0] if result else 0
 
-#     conn.close()
-#     return total_order_value
+    conn.close()
+    return total_order_value
