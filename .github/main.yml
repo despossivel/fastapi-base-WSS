@@ -3,7 +3,7 @@ name: Build, Publish, and Deploy
 on:
   push:
     branches:
-      - main  # substitua pelo nome da sua branch principal, se necessário
+      - master  # substitua pelo nome da sua branch principal, se necessário
 
 jobs:
   build-publish-deploy:

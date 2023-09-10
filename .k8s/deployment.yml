@@ -16,7 +16,7 @@ spec:
       - name: webserver
         image: despossivel/webserver:TAG
         ports:
-        - containerPort: 5000 
+        - containerPort: 5003 
         #if imagem be private
       imagePullSecrets:
       - name: regcred

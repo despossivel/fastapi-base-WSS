@@ -1,8 +1,13 @@
 # database.py
 import sqlite3
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+DB = os.getenv('DB')
 
 def create_database():
-    conn = sqlite3.connect('mydatabase.db')
+    conn = sqlite3.connect(DB)
     cursor = conn.cursor()
 
     cursor.execute('''
@@ -27,7 +32,7 @@ def create_database():
 
 
 def select_tasks():
-    conn = sqlite3.connect('mydatabase.db')
+    conn = sqlite3.connect(DB)
     cursor = conn.cursor()
     cursor.execute('SELECT id, title, completed FROM tasks')
     tasks_from_db = [{'id': row[0], 'title': row[1], 'completed': bool(row[2])} for row in cursor.fetchall()]
@@ -37,7 +42,7 @@ def select_tasks():
 
 def create_task(title):
      # Save the task in the database
-    conn = sqlite3.connect('mydatabase.db')
+    conn = sqlite3.connect(DB)
     cursor = conn.cursor()
     cursor.execute('INSERT INTO tasks (title, completed) VALUES (?, ?)', (title, False))
     conn.commit()
@@ -46,7 +51,7 @@ def create_task(title):
 
 
 def query_orders(customer_name, start_date, end_date):
-    conn = sqlite3.connect('mydatabase.db')
+    conn = sqlite3.connect(DB)
     cursor = conn.cursor()
 
     cursor.execute('''

@@ -1,14 +1,17 @@
 from flask import Flask, request, jsonify
-from data_manipulation import calculate_average
-from jwt_auth import generate_token, verify_token
-from database import create_database, create_task, select_tasks
+from src.utils.data_manipulation import calculate_average
+from src.jwt_auth import generate_token, verify_token
+from src.database import create_database, create_task, select_tasks
 from werkzeug.security import check_password_hash, generate_password_hash
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
+ 
 app = Flask(__name__)
  
 users = {
-    'user1': generate_password_hash('password1'),
-    'user2': generate_password_hash('password2')
+   'user': generate_password_hash(os.getenv('PASSWORD'))
 }
 
 @app.route('/add_task', methods=['POST'])
@@ -16,15 +19,11 @@ def add_task():
     data = request.get_json()
     title = data.get('title')
     
-    if title:
-        task_id = len(tasks) + 1   
-        tasks[task_id] = {'title': title, 'completed': False}
+    if title: 
         create_task(title)
- 
-        return jsonify({'message': 'Task added successfully!', 'task_id': task_id}), 201
+        return jsonify({'message': 'Task added successfully!'}), 201
     else:
         return jsonify({'error': 'Title is required!'}), 400
-
 
 @app.route('/list_tasks', methods=['GET'])
 def list_tasks():
@@ -45,4 +44,4 @@ def authenticate():
 
 if __name__ == '__main__':
     create_database()
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=os.getenv('PORT'), debug=os.getenv('DEBUG'))

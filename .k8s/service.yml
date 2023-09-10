@@ -8,7 +8,7 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 5000
+      targetPort: 5003
   type: ClusterIP
   sessionAffinity: ClientIP  # Define a afinidade de sessão com base no IP do cliente
   sessionAffinityConfig:
