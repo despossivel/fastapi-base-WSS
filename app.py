@@ -1,7 +1,8 @@
 from flask import Flask, request, jsonify
 from src.utils.data_manipulation import calculate_average
 from src.jwt_auth import generate_token, verify_token
-from src.database import create_database, create_task, select_tasks
+from src.config.database import create_database
+from src.models.tasks import create_task, select_tasks
 from werkzeug.security import check_password_hash, generate_password_hash
 from dotenv import load_dotenv
 import os
