@@ -1,7 +1,7 @@
 to run run
 
 ```bash
-python app.py
+uvicorn main:app --reload
 ```
 or 
 ```bash
