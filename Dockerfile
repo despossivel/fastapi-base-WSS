@@ -11,9 +11,7 @@ COPY . /app
 RUN pip install -r requirements.txt
 
 # Exponha a porta em que o servidor web estará ouvindo (por exemplo, porta 80)
-EXPOSE 5000
-
+EXPOSE 8000
  
-
 # Comando para iniciar o servidor web Python
-CMD ["python", "app.py"]
+CMD ["uvicorn", "main:app"]
